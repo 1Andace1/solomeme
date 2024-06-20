@@ -1,0 +1,19 @@
+{
+  "development": {
+    "use_env_variable": "DB"
+  },
+  "test": {
+    "username": "and_ray",
+    "password": "123",
+    "database": "solo",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "and_ray",
+    "password": "123",
+    "database": "solo",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

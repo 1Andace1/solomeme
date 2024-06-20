@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.body{
+  background: none;
+  background-image: url(https://i.pinimg.com/564x/74/01/cb/7401cb93d64b88f7e0e19a9a0ad31dc5.jpg);
+  background-size: cover;
+}
