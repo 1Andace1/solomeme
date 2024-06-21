@@ -48,6 +48,7 @@ export default function Form({ user, setEntries }) {
 
   return (
     <div>
+                {/* <img src={`http://localhost:3100/img/1.jpg`}/> */}
       <button onClick={() => setIsFormVisible(!isFormVisible)}>
         {isFormVisible ? 'Скрыть' : 'Добавить'}
       </button>

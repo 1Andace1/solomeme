@@ -3,6 +3,8 @@ const { Whale } = require('../../db/models');
 const { verifyAccessToken } = require('../middlewares/verifyToken');
 const multer  = require('multer')
 const upload = multer({ dest: 'public/img' })
+const fs = require('fs'); 
+const path = require('path');
 router
   .post('/profile', upload.single('avatar'),function (req, res, next) {
     res.sendStatus(200)
@@ -21,10 +23,19 @@ router
   })
   .post('/',verifyAccessToken,upload.single('avatar'), async (req, res) => {
     const { name, description, user } = req.body;
-    // console.log(req.file,'24');
+    console.log(req.file,'24');
     // console.log(req.body);
     try {
       const entry = await Whale.create({name, image:req.file.filename, description, userId: user });
+      if (entry) {
+        const a = fs.readdirSync('./public/img')
+        fs.renameSync(`./public/img/${req.file.filename}`,`./public/img/${req.file.filename}.jpg`);
+        console.log(a);
+      }
+        // fs.readdirSync(path.join(__dirname, 'public'))
+
+
+      // app.use(express.static(path.join(__dirname, 'public')));
       res.json(entry);
     } catch (error) {
       console.error(error);

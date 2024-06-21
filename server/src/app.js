@@ -6,7 +6,6 @@ const morgan = require('morgan');
 const multer = require('multer');
 const path = require('path');
 const apiRouter = require('./routers/api.router');
-
 const app = express();
 const { PORT } = process.env;
 
@@ -27,8 +26,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors(corsConfig));
-app.use(express.static(path.join(__dirname, 'public')));
-
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/img', express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use('/api/v1', apiRouter);
 
 // Error handling middleware

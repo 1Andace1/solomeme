@@ -38,7 +38,8 @@ export default function MainCard({ user, entry, setEntries }) {
       <Card bgColor='#313133' className={styles.container} maxW='sm'>
         <CardBody className={styles.body}>
           <Stack mt='3' spacing='3'>
-          <img src="/" />
+          {/* <img src={`https://localhost:3100/img/de6c94dce2dc1bbcd3870424b9949e07.jpg`}/> */}
+          <img src={`http://localhost:3100/img/${entry?.image}.jpg`}/>
             <Heading size='md'>{entry?.name}</Heading>
             <Text>{entry?.description}</Text>
           </Stack>
@@ -49,16 +50,16 @@ export default function MainCard({ user, entry, setEntries }) {
         <Divider />
         <CardFooter>
           <ButtonGroup spacing='2'>
-            <Button variant='solid' colorScheme='blue'>
-              Подробнее
+            <Button variant='solid' colorScheme='green'>
+              редактировать
             </Button>
             <Popover placement='top' className={styles.popover}>
               <PopoverTrigger>
-                <Button
+                <Button 
                   isLoading={user?.id !== entry.userId}
                   spinner={<p>Удалить</p>}
-                  variant='ghost'
-                  colorScheme='blue'
+                  variant='solid'
+                  colorScheme='red'
                 >
                   Удалить
                 </Button>
