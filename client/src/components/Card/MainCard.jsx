@@ -110,7 +110,7 @@ export default function MainCard({ user, entry, setEntries }) {
               </FormControl>
             ) : (
               <>
-                <Heading size='md'>{entry?.name}</Heading>
+                <Heading Color="#3f3e3e" size='md'>{entry?.name}</Heading>
                 <Text>{entry?.description}</Text>
               </>
             )}
