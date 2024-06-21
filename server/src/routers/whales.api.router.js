@@ -12,6 +12,19 @@ router
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
 })
+  .put('/:id', async (req, res) => { //редактирование !!!
+const {id} = req.params 
+const {name,description} = req.body 
+try {
+  const entries = await Whale.findByPk(id);
+  await entries.update({ name, description })
+  res.json(entries)
+console.log(entries);
+} catch (error) {
+  console.error(error);
+  res.sendStatus(400);
+}
+  })
   .get('/', async (req, res) => {
     try {
       const entries = await Whale.findAll();

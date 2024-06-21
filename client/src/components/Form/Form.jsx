@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './Form.module.css';
-import { Input, Button } from '@chakra-ui/react';
+import { Input, Button, FormControl, FormLabel, Box, Image } from '@chakra-ui/react';
 import axiosInstance from '../../axiosInstance';
 
 const { VITE_API } = import.meta.env;
@@ -8,6 +8,7 @@ const { VITE_API } = import.meta.env;
 export default function Form({ user, setEntries }) {
   const [inputs, setInputs] = useState({ name: '', description: '' });
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(true);
 
   const changeHandler = (e) => {
@@ -17,6 +18,7 @@ export default function Form({ user, setEntries }) {
   const imageHandler = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setImage(e.target.files[0]);
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
     }
   };
 
@@ -39,6 +41,7 @@ export default function Form({ user, setEntries }) {
         setEntries((prev) => [...prev, res.data]);
         setInputs({ name: '', description: '' });
         setImage(null);
+        setImagePreview(null);
         e.target.reset(); // Очистка формы
       }
     } catch (error) {
@@ -48,7 +51,6 @@ export default function Form({ user, setEntries }) {
 
   return (
     <div>
-                {/* <img src={`http://localhost:3100/img/1.jpg`}/> */}
       <button onClick={() => setIsFormVisible(!isFormVisible)}>
         {isFormVisible ? 'Скрыть' : 'Добавить'}
       </button>
@@ -56,7 +58,33 @@ export default function Form({ user, setEntries }) {
         <form onSubmit={submitHandler} className={styles.wrapper} encType="multipart/form-data">
           <h3 className={styles.head}>Добавь свой мем:</h3>
           <div className={styles.inputs}>
-            <input type="file" name="avatar" accept="image/*" onChange={imageHandler} />
+            <FormControl>
+              <FormLabel>Выберите изображение</FormLabel>
+              <Input
+                type="file"
+                name="avatar"
+                accept="image/*"
+                onChange={imageHandler}
+                display="none"
+                id="file-upload"
+              />
+              <label htmlFor="file-upload">
+                <Box
+                  borderWidth="1px"
+                  borderRadius="lg"
+                  borderStyle="dashed"
+                  p={4}
+                  textAlign="center"
+                  cursor="pointer"
+                >
+                  {imagePreview ? (
+                    <Image src={imagePreview} alt="Preview" maxH="200px" objectFit="cover" />
+                  ) : (
+                    'Загрузить изображение'
+                  )}
+                </Box>
+              </label>
+            </FormControl>
             <Input
               onChange={changeHandler}
               borderColor="#3f3e3e"

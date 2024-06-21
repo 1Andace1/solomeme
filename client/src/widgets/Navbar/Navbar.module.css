@@ -10,7 +10,6 @@
   padding: 0 20px;
   background-color: black;
 }
-
 .right {
   width: 160px;
   display: flex;
@@ -21,4 +20,18 @@
   width: 3vw;
   display: flex;
   justify-content: space-between;
+}
+.logoLink {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px; /* Фиксированный размер */
+  height: 50px; /* Фиксированный размер */
+  margin-right: 10px;
+}
+
+.homeText {
+  margin-left: 10px;
 }

@@ -15,7 +15,7 @@ export default function Navbar({ user, setUser }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>
-        <Link to='/'><img src="https://i.pinimg.com/564x/71/1f/25/711f2584db87a02603227588e033be64.jpg"  /></Link>
+        <Link to='/'><img src="https://i.pinimg.com/564x/71/1f/25/711f2584db87a02603227588e033be64.jpg"  alt="Logo"/></Link>
       </div>
       <div className={styles.right}>
         {user?.username ? (
